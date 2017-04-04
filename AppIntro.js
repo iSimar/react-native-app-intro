@@ -202,9 +202,10 @@ export default class AppIntro extends Component {
       isDoneBtnShow = false;
       isSkipBtnShow = true;
     }
+    var notLocked = this.props.lockedOn.indexOf(index) == -1;
     return (
       <View style={[this.styles.paginationContainer]}>
-        {this.props.showSkipButton ? <SkipButton
+        {(this.props.showSkipButton && notLocked) ? <SkipButton
           {...this.props}
           {...this.state}
           isSkipBtnShow={isSkipBtnShow}
@@ -212,11 +213,11 @@ export default class AppIntro extends Component {
           onSkipBtnClick={() => this.props.onSkipBtnClick(index)} /> :
           <View style={this.styles.btnContainer} />
         }
-        {this.props.showDots && RenderDots(index, total, {
+        {this.props.showDots && notLocked && RenderDots(index, total, {
           ...this.props,
           styles: this.styles
         })}
-        {this.props.showDoneButton ? <DoneButton
+        {(this.props.showDoneButton && notLocked) ? <DoneButton
             {...this.props}
             {...this.state}
             isDoneBtnShow={isDoneBtnShow}
@@ -388,6 +389,7 @@ AppIntro.propTypes = {
   showSkipButton: PropTypes.bool,
   showDoneButton: PropTypes.bool,
   showDots: PropTypes.bool,
+  lockedOn: propTypes.array
 };
 
 AppIntro.defaultProps = {
@@ -406,5 +408,6 @@ AppIntro.defaultProps = {
   defaultIndex: 0,
   showSkipButton: true,
   showDoneButton: true,
-  showDots: true
+  showDots: true,
+  lockedOn: []
 };
