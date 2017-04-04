@@ -118,6 +118,10 @@ export default class AppIntro extends Component {
     };
   }
 
+  goNext(){
+    this.onNextBtnClick(this._swiper);
+  }
+
   onNextBtnClick = (context) => {
     if (context.state.isScrolling || context.state.total < 2) return;
     const state = context.state;
@@ -341,6 +345,7 @@ export default class AppIntro extends Component {
       <View>
         {androidPages}
         <Swiper
+          ref={(swiper) => {this._swiper = swiper;}}
           loop={false}
           index={this.props.defaultIndex}
           renderPagination={this.renderPagination}
