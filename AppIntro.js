@@ -388,8 +388,7 @@ AppIntro.propTypes = {
   defaultIndex: PropTypes.number,
   showSkipButton: PropTypes.bool,
   showDoneButton: PropTypes.bool,
-  showDots: PropTypes.bool,
-  lockedOn: propTypes.array
+  showDots: PropTypes.bool
 };
 
 AppIntro.defaultProps = {
